@@ -1,21 +1,33 @@
-FROM php:5.6-apache
+FROM ubuntu:14.04
 
-RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
+MAINTAINER Pascal Nagel <nagel@porus.org>
 
-RUN a2ensite *.conf
+RUN apt-get -y update
+RUN apt-get -y upgrade
 
-EXPOSE 80
-EXPOSE 443
+# Install apache, PHP, and supplimentary programs. curl and lynx-cur are for debugging the container. 
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php5 php5-mysql php5-gd php-pear php-apc php5-curl curl lynx-cur
 
-RUN /usr/bin/install -d -o www-data -g www-data /var/log/apache2 
+# Enable apache mods. 
+RUN a2enmod php5
+RUN a2enmod rewrite
 
-VOLUME /var/www/html
-VOLUME /etc/apache2/sites-enabled
+# Manually set up the apache environment variables
+ENV APACHE_RUN_USER www-data 
+ENV APACHE_RUN_GROUP www-data 
+ENV APACHE_LOG_DIR /var/log/apache2
+ENV APACHE_LOCK_DIR /var/lock/apache2
+ENV APACHE_PID_FILE /var/run/apache2.pid 
 
-ENV APACHE_RUN_USER=www-data
-ENV APACHE_RUN_GROUP=www-data
-ENV APACHE_PID_FILE=/var/run/apache2/apache2.pid
-ENV APACHE_RUN_DIR=/var/run/apache2
-ENV APACHE_LOCK_DIR=/var/lock/apache2
-ENV APACHE_LOG_DIR=/var/log/apache2
-ENV LANG=C
+EXPOSE 80 443 
+
+RUN a2ensite 000-default.conf
+RUN a2ensite porus.org.conf
+RUN a2ensite sphinexhotels.com.conf
+RUN a2ensite ezdoc.de.conf
+RUN a2ensite bioron.net.conf
+RUN a2ensite bioron.de.conf
+RUN a2ensite chefbucket.com.conf
+
+# By default, simply start apache. 
+CMD /usr/sbin/apache2ctl -D FOREGROUND
