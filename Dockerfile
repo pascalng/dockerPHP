@@ -21,6 +21,13 @@ ENV APACHE_PID_FILE /var/run/apache2.pid
 
 EXPOSE 80 443 
 
+ADD porus.org.conf /etc/apache2/sites-available/
+ADD bioron.net.conf /etc/apache2/sites-available/
+ADD bioron.de.conf /etc/apache2/sites-available/
+ADD sphinexhotels.conf /etc/apache2/sites-available/
+ADD ezodc.conf /etc/apache2/sites-available/
+ADD chefbucket.conf /etc/apache2/sites-available/
+
 RUN a2ensite 000-default.conf
 RUN a2ensite porus.org.conf
 RUN a2ensite sphinexhotels.com.conf
