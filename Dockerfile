@@ -21,6 +21,7 @@ ENV APACHE_PID_FILE /var/run/apache2.pid
 
 EXPOSE 80 443 3306 
 
+ADD apache2.conf /etc/apache2/
 ADD porus.org.conf /etc/apache2/sites-available/
 ADD bioron.net.conf /etc/apache2/sites-available/
 ADD bioron.de.conf /etc/apache2/sites-available/
