@@ -29,6 +29,7 @@ ADD bioron.de.conf /etc/apache2/sites-available/
 ADD sphinexhotels.com.conf /etc/apache2/sites-available/
 ADD ezdoc.de.conf /etc/apache2/sites-available/
 ADD chefbucket.com.conf /etc/apache2/sites-available/
+ADD webmail.bioron.net.conf /etc/apache2/sites-abailable/
 
 RUN a2ensite 000-default.conf
 RUN a2ensite porus.org.conf
@@ -37,6 +38,7 @@ RUN a2ensite ezdoc.de.conf
 RUN a2ensite bioron.net.conf
 RUN a2ensite bioron.de.conf
 RUN a2ensite chefbucket.com.conf
+RUN a2ensite webmail.bioron.net.conf
 
 # By default, simply start apache. 
 CMD /usr/sbin/apache2ctl -D FOREGROUND
