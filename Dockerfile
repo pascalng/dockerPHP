@@ -24,21 +24,21 @@ EXPOSE 80 443 3306
 ADD apache2.conf /etc/apache2/
 ADD php.ini /etc/php5/apache2/
 ADD porus.org.conf /etc/apache2/sites-available/
+ADD webmail.bioron.net.conf /etc/apache2/sites-abailable/
 ADD bioron.net.conf /etc/apache2/sites-available/
 ADD bioron.de.conf /etc/apache2/sites-available/
 ADD sphinexhotels.com.conf /etc/apache2/sites-available/
 ADD ezdoc.de.conf /etc/apache2/sites-available/
 ADD chefbucket.com.conf /etc/apache2/sites-available/
-ADD webmail.bioron.net.conf /etc/apache2/sites-abailable/
 
 RUN a2ensite 000-default.conf
 RUN a2ensite porus.org.conf
 RUN a2ensite sphinexhotels.com.conf
 RUN a2ensite ezdoc.de.conf
+RUN a2ensite webmail.bioron.net.conf
 RUN a2ensite bioron.net.conf
 RUN a2ensite bioron.de.conf
 RUN a2ensite chefbucket.com.conf
-RUN a2ensite webmail.bioron.net.conf
 
 # By default, simply start apache. 
 CMD /usr/sbin/apache2ctl -D FOREGROUND
