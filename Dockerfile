@@ -6,7 +6,7 @@ RUN apt-get -y update
 RUN apt-get -y upgrade
 
 # Install apache, PHP, and supplimentary programs. curl and lynx-cur are for debugging the container. 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php5 php5-mysql php5-gd php-pear php-apc php5-curl curl lynx-cur ssmtp
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php5 php5-mysql php5-gd php-pear php-apc php5-curl curl lynx-cur
 
 # Enable apache mods. 
 RUN a2enmod php5
@@ -31,8 +31,8 @@ ADD sphinexhotels.com.conf /etc/apache2/sites-available/
 ADD ezdoc.de.conf /etc/apache2/sites-available/
 ADD chefbucket.com.conf /etc/apache2/sites-available/
 
-ADD ssmtp.conf /etc/ssmtp/
-ADD revaliases /etc/ssmtp/
+#ADD ssmtp.conf /etc/ssmtp/
+#ADD revaliases /etc/ssmtp/
 
 RUN a2ensite 000-default.conf
 RUN a2ensite porus.org.conf
