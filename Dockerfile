@@ -31,8 +31,8 @@ ADD sphinexhotels.com.conf /etc/apache2/sites-available/
 ADD ezdoc.de.conf /etc/apache2/sites-available/
 ADD chefbucket.com.conf /etc/apache2/sites-available/
 
-ADD ssmtp.conf /etc/ssmtp/
-ADD revaliases /etc/ssmtp/
+#ADD ssmtp.conf /etc/ssmtp/
+#ADD revaliases /etc/ssmtp/
 
 RUN a2ensite 000-default.conf
 RUN a2ensite porus.org.conf
