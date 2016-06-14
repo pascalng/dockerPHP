@@ -30,9 +30,9 @@ ADD bioron.de.conf /etc/apache2/sites-available/
 ADD sphinexhotels.com.conf /etc/apache2/sites-available/
 ADD ezdoc.de.conf /etc/apache2/sites-available/
 ADD chefbucket.com.conf /etc/apache2/sites-available/
-ADD bioron-diagnostics.com.conf /etc/apache2/sites-available/
-ADD bioron-diagnostics.net.conf /etc/apache2/sites-available/
-ADD bioron-diagnostics.de.conf /etc/apache2/sites-available/
+COPY bioron-diagnostics.com.conf /etc/apache2/sites-available/bioron-diagnostics.com.conf 
+COPY bioron-diagnostics.net.conf /etc/apache2/sites-available/bioron-diagnostics.net.conf
+COPY bioron-diagnostics.de.conf /etc/apache2/sites-available/bioron-diagnostics.de.conf
 
 COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
 COPY revaliases /etc/ssmtp/revaliases
