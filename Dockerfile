@@ -30,6 +30,9 @@ ADD bioron.de.conf /etc/apache2/sites-available/
 ADD sphinexhotels.com.conf /etc/apache2/sites-available/
 ADD ezdoc.de.conf /etc/apache2/sites-available/
 ADD chefbucket.com.conf /etc/apache2/sites-available/
+ADD bioron-diagnostics.com.conf /etc/apache2/sites-available/
+ADD bioron-diagnostics.net.conf /etc/apache2/sites-available/
+ADD bioron-diagnostics.de.conf /etc/apache2/sites-available/
 
 COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
 COPY revaliases /etc/ssmtp/revaliases
@@ -42,6 +45,9 @@ RUN a2ensite webmail.bioron.net.conf
 RUN a2ensite bioron.net.conf
 RUN a2ensite bioron.de.conf
 RUN a2ensite chefbucket.com.conf
+RUN a2ensite bioron-diagnostics.com.conf
+RUN a2ensite bioron-diagnostics.net.conf
+RUN a2ensite bioron-diagnostics.de.conf
 
 # By default, simply start apache. 
 CMD /usr/sbin/apache2ctl -D FOREGROUND
